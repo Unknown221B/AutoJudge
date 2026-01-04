@@ -111,3 +111,17 @@ joblib.dump(final_clf, "classifier.pkl")
 joblib.dump(final_reg, "regressor.pkl")
 
 print("\nFinal models saved successfully.")
+
+print("\n--- Final Model Evaluation on Test Set ---")
+
+final_class_preds = final_clf.predict(X_test)
+print("Final Classification Accuracy:",
+      accuracy_score(y_class_test, final_class_preds))
+print("Final Confusion Matrix:")
+print(confusion_matrix(y_class_test, final_class_preds))
+
+final_score_preds = final_reg.predict(X_test)
+print("Final Regression MAE:",
+      mean_absolute_error(y_score_test, final_score_preds))
+print("Final Regression RMSE:",
+      mean_squared_error(y_score_test, final_score_preds) ** 0.5)
