@@ -35,9 +35,9 @@ Various models were evaluated using an **80/20 train–test split**.
 
 **Confusion Matrix:**
 ```text
-[ [32, 66, 38]
-[11, 374, 40]
-[19, 202, 41] ]
+[[32  66  38]
+ [11 374  40]
+ [19 202  41]]
 ```
 
 From the matrix we can conclude that **Medium** problems are most often classified correctly, although there is a noticeable overlap between Medium and Hard classes. Thus there is an inherent ambiguity in estimating difficulty levels using text-only features.
