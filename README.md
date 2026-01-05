@@ -51,6 +51,8 @@ From the matrix we can conclude that **Medium** problems are most often classifi
 **Mean Absolute Error (MAE):** 1.69
 **Root Mean Squared Error (RMSE):** 2.05
 
+> **Note:**  The difficulty class and difficulty score are predicted independently using separate models, and no explicit numeric thresholds were defined between difficulty classes.
+
 ## How to Run
 
 Clone the repository:
