@@ -30,14 +30,26 @@ Various models were evaluated using an **80/20 train–test split**.
 - Support Vector Machine (LinearSVC)  
 - Random Forest  
 
-**Final classifier:** Linear SVM
+**Final classifier:** Random Forest  
+**Accuracy:** 54.31%
+
+**Confusion Matrix:**
+```text
+[ [32, 66, 38],
+[11, 374, 40],
+[19, 202, 41] ]
+```
+
+From the matrix we can conclude that **Medium** problems are most often classified correctly, although there is a noticeable overlap between Medium and Hard classes. Thus there is an inherent ambiguity in estimating difficulty levels using text-only features.
 
 ### Regression
 - Linear Regression  
 - Random Forest Regressor  
 - Gradient Boosting Regressor  
 
-**Final regressor:** Gradient Boosting Regressor
+**Final regressor:** Random Forest Regressor
+**Mean Absolute Error (MAE):** 1.69
+**Root Mean Squared Error (RMSE):** 2.05
 
 ## How to Run
 

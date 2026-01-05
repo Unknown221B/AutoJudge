@@ -65,7 +65,7 @@ for name, model in classifiers.items():
     acc = accuracy_score(y_class_test, preds)
     print(f"{name} Accuracy: {acc:.4f}")
 
-final_clf = LinearSVC()
+final_clf = RandomForestClassifier(n_estimators=200, random_state=42)
 final_clf.fit(X_train, y_class_train)
 
 best_preds = final_clf.predict(X_test)
@@ -87,7 +87,7 @@ for name, model in regressors.items():
     rmse = mean_squared_error(y_score_test, preds) ** 0.5
     print(f"{name} | MAE: {mae:.3f} | RMSE: {rmse:.3f}")
 
-final_reg = GradientBoostingRegressor(random_state=42)
+final_reg = RandomForestRegressor(n_estimators=200, random_state=42)
 final_reg.fit(X_train, y_score_train)
 
 joblib.dump(tfidf, "tfidf.pkl")
