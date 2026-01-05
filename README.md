@@ -80,6 +80,6 @@ Open in browser:
 http://127.0.0.1:5000
 ```
 ## Demo
-The video file is included in the repository.
-[Repository link](./AutoJudge%20Demo%20Video%20Final.mp4)
-[Google Drive Link](https://drive.google.com/file/d/1xGW8AZBnOVZjP3yMnH7o1lIWCwc5vAHK/view?usp=sharing)
+The video file is included in the repository.  
+[Repository link](./AutoJudge%20Demo%20Video%20Final.mp4)  
+[Google Drive Link](https://drive.google.com/file/d/1xGW8AZBnOVZjP3yMnH7o1lIWCwc5vAHK/view?usp=sharing)  
