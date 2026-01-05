@@ -1,80 +1,38 @@
-import streamlit as st
+from flask import Flask, render_template, request
 import joblib
 from scipy.sparse import hstack
 from features import handcrafted_features
 
-# Load models
+app = Flask(__name__)
+
 tfidf = joblib.load("tfidf.pkl")
 classifier = joblib.load("classifier.pkl")
 regressor = joblib.load("regressor.pkl")
 
-st.set_page_config(page_title="AutoJudge", layout="centered")
+@app.route("/", methods=["GET", "POST"])
+def index():
+    result = None
+    data = {"desc": "", "inp": "", "out": ""}
 
-st.markdown(
-    """
-    ## 🧠 AutoJudge  
-    Let’s see how difficult your coding problem is 👀  
-    Paste the problem details below and hit **Predict**.
-    """
-)
+    if request.method == "POST":
+        desc = request.form.get("description", "").strip()
+        inp = request.form.get("input_desc", "").strip()
+        out = request.form.get("output_desc", "").strip()
 
-# ---------- Session state ----------
-if "submitted" not in st.session_state:
-    st.session_state.submitted = False
-if "data" not in st.session_state:
-    st.session_state.data = {}
+        data = {"desc": desc, "inp": inp, "out": out}
 
-# ---------- INPUT FORM ----------
-if not st.session_state.submitted:
-    with st.form("problem_form"):
-        desc = st.text_area("Problem Description", height=300)
-        inp = st.text_area("Input Description", height=200)
-        out = st.text_area("Output Description", height=200)
+        if desc and inp and out:
+            combined = desc + " " + inp + " " + out
+            X_text = tfidf.transform([combined])
+            X_hand = handcrafted_features([combined])
+            X_final = hstack([X_text, X_hand])
 
-        submitted = st.form_submit_button("Predict")
-
-        if submitted:
-            st.session_state.data = {
-                "desc": desc,
-                "inp": inp,
-                "out": out,
+            result = {
+                "class": classifier.predict(X_final)[0].capitalize(),
+                "score": round(float(regressor.predict(X_final)[0]), 2)
             }
-            st.session_state.submitted = True
-            st.rerun()
 
-# ---------- AFTER SUBMIT (RELOAD-LIKE VIEW) ----------
-else:
-    desc = st.session_state.data["desc"]
-    inp = st.session_state.data["inp"]
-    out = st.session_state.data["out"]
+    return render_template("index.html", result=result, data=data)
 
-    # Expanded, read-only display
-    st.text_area("Problem Description", desc, height=max(300, len(desc)//2), disabled=True)
-    st.text_area("Input Description", inp, height=max(200, len(inp)//2), disabled=True)
-    st.text_area("Output Description", out, height=max(200, len(out)//2), disabled=True)
-
-    combined_text = desc + " " + inp + " " + out
-    X_text = tfidf.transform([combined_text])
-    X_hand = handcrafted_features([combined_text])
-    X_final = hstack([X_text, X_hand])
-
-    predicted_class = classifier.predict(X_final)[0]
-    predicted_score = regressor.predict(X_final)[0]
-
-    st.markdown("---")
-    st.markdown("### 📊 Result")
-
-    st.markdown(
-        f"""
-        <div style="background-color:#1f2933;padding:16px;border-radius:10px;">
-        <b>Difficulty:</b> {predicted_class.capitalize()}<br>
-        <b>Score:</b> {predicted_score:.2f} / 10
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-    if st.button("Try another problem"):
-        st.session_state.submitted = False
-        st.session_state.data = {}
-        st.rerun()
+if __name__ == "__main__":
+    app.run(debug=True)

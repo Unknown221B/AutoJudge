@@ -16,7 +16,6 @@ from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
 from features import handcrafted_features
 
 
-# ---------- Load data ----------
 def load_data(path):
     records = []
     with open(path, "r", encoding="utf-8") as f:
@@ -34,29 +33,24 @@ df["combined_text"] = (
     df["output_description"].fillna("")
 )
 
-# ---------- Targets ----------
 y_class = df["problem_class"]
 y_score = df["problem_score"]
 
-# ---------- Features ----------
 X = df["combined_text"]
 
 tfidf = TfidfVectorizer(
     max_features=5000,
     stop_words="english"
 )
+
 X_text = tfidf.fit_transform(X)
 X_hand = handcrafted_features(X)
 X_final = hstack([X_text, X_hand])
 
-# ---------- Train / Test split ----------
 X_train, X_test, y_class_train, y_class_test, y_score_train, y_score_test = train_test_split(
     X_final, y_class, y_score, test_size=0.2, random_state=42
 )
 
-# =====================================================
-#                 CLASSIFICATION
-# =====================================================
 print("\n--- Classification Models ---")
 
 classifiers = {
@@ -71,7 +65,6 @@ for name, model in classifiers.items():
     acc = accuracy_score(y_class_test, preds)
     print(f"{name} Accuracy: {acc:.4f}")
 
-# Best classifier (chosen after comparison)
 final_clf = LinearSVC()
 final_clf.fit(X_train, y_class_train)
 
@@ -79,10 +72,6 @@ best_preds = final_clf.predict(X_test)
 print("\nConfusion Matrix (Best Classifier):")
 print(confusion_matrix(y_class_test, best_preds))
 
-
-# =====================================================
-#                  REGRESSION
-# =====================================================
 print("\n--- Regression Models ---")
 
 regressors = {
@@ -98,21 +87,14 @@ for name, model in regressors.items():
     rmse = mean_squared_error(y_score_test, preds) ** 0.5
     print(f"{name} | MAE: {mae:.3f} | RMSE: {rmse:.3f}")
 
-# Best regressor (chosen after comparison)
 final_reg = GradientBoostingRegressor(random_state=42)
 final_reg.fit(X_train, y_score_train)
 
-
-# =====================================================
-#                  SAVE MODELS
-# =====================================================
 joblib.dump(tfidf, "tfidf.pkl")
 joblib.dump(final_clf, "classifier.pkl")
 joblib.dump(final_reg, "regressor.pkl")
 
 print("\nFinal models saved successfully.")
-
-print("\n--- Final Model Evaluation on Test Set ---")
 
 final_class_preds = final_clf.predict(X_test)
 print("Final Classification Accuracy:",

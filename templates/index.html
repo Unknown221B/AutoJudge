@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AutoJudge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="/static/script.js" defer></script>
+</head>
+<body>
+
+<div class="container">
+    <h1># AutoJudge</h1>
+    <p class="subtitle">
+        Want to see how difficult your coding problem actually is? Paste your problem below and find out!
+    </p>
+
+    <form method="POST">
+        <label>Problem Description</label>
+        <textarea name="description" required class="{% if result %}submitted{% endif %}">{{ data.desc }}</textarea>
+
+        <label>Input Description</label>
+        <textarea name="input_desc" required class="{% if result %}submitted{% endif %}">{{ data.inp }}</textarea>
+
+        <label>Output Description</label>
+        <textarea name="output_desc" required class="{% if result %}submitted{% endif %}">{{ data.out }}</textarea>
+
+        <div class="button-row">
+            <button type="submit" class="predict-btn">Predict</button>
+            <a href="/" class="clear-btn">Clear</a>
+        </div>
+    </form>
+
+    {% if result %}
+    <div id="result" class="result">
+        <h2>📊 Result</h2>
+        <p><b>Difficulty:</b> {{ result.class }}</p>
+        <p><b>Score:</b> {{ result.score }} / 10</p>
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
