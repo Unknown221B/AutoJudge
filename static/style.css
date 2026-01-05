@@ -1,3 +1,8 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background: #f8fafc;
     color: #111827;
@@ -7,17 +12,18 @@ body {
 .container {
     max-width: 900px;
     margin: auto;
-    padding: 32px;
+    padding: 20px 32px;
 }
 
 h1 {
+    margin-top: 0;
     margin-bottom: 6px;
 }
 
 .subtitle {
     color: #4b5563;
-    margin-top: 0px;
-    margin-bottom: 12px;
+    margin-top: 6px;
+    margin-bottom: 14px;
     font-size: 18px;
     line-height: 1.6;
     font-weight: 500;
@@ -32,7 +38,7 @@ label {
 
 textarea {
     width: 100%;
-    min-height: 90px;
+    min-height: 77px;
     resize: none;
     padding: 12px;
     background: #ffffff;
@@ -40,7 +46,7 @@ textarea {
     border-radius: 6px;
     border: 1px solid #d1d5db;
     font-size: 14px;
-    line-height: 1.6;
+    line-height: 1.55;
     font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
     white-space: pre-wrap;
     word-wrap: break-word;
@@ -59,7 +65,7 @@ textarea.submitted {
 }
 
 .button-row {
-    margin-top: 24px;
+    margin-top: 20px;
     display: flex;
     gap: 12px;
 }
@@ -95,7 +101,7 @@ textarea.submitted {
 }
 
 .result {
-    margin-top: 40px;
+    margin-top: 32px;
     padding: 22px;
     background: #ffffff;
     border-radius: 10px;
