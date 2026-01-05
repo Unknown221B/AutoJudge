@@ -65,10 +65,11 @@ Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
-> **Note:**  If the above command does not work, use 
-```bash
-python -m pip install -r requirements.txt
-```
+> **Note:**  If the above command does not work, use:
+> 
+> ```bash
+> python -m pip install -r requirements.txt
+> ```
 
 Run the web application:
 ```bash
