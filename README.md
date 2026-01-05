@@ -15,7 +15,7 @@ No external data sources are used.
 
 ## Preprocessing and Feature Extraction
 
-For preprocessing, missing values are handled and all text fields are combined into a single input. Feature extraction includes:
+For preprocessing, missing values are handled and all text fields are combined internally into a single input. Feature extraction includes:
 - TF-IDF vectors  
 - Text length  
 - Mathematical symbol count  
@@ -65,6 +65,11 @@ Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
+> **Note:**  If the above command does not work, use 
+```bash
+python -m pip install -r requirements.txt
+```
+
 Run the web application:
 ```bash
 python app.py
