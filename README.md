@@ -79,3 +79,5 @@ Open in browser:
 ```cpp
 http://127.0.0.1:5000
 ```
+## Demo
+[Click here to watch the project demo video](./AutoJudge%20Demo%20Video%20Final.mp4)
