@@ -41,6 +41,12 @@ Various models were evaluated using an **80/20 train–test split**.
 
 ## How to Run
 
+Clone the repository:
+```bash
+git clone <https://github.com/Unknown221B/AutoJudge.git>
+cd AutoJudge
+```
+
 Install dependencies:
 ```bash
 pip install -r requirements.txt
