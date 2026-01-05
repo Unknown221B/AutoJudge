@@ -16,7 +16,7 @@ h1 {
 
 .subtitle {
     color: #4b5563;
-    margin-bottom: 28px;
+    margin-bottom: 16px;
     font-size: 18px;
     line-height: 1.6;
     font-weight: 500;
@@ -24,7 +24,7 @@ h1 {
 
 label {
     display: block;
-    margin-top: 16px;
+    margin-top: 12px;
     margin-bottom: 6px;
     font-weight: 600;
 }
