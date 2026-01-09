@@ -81,5 +81,9 @@ http://127.0.0.1:5000
 ```
 ## Demo
 The video file is included in the repository.  
-[Repository link](./AutoJudge%20Demo%20Video%20Final.mp4)  
+[Repository Link](./AutoJudge%20Demo%20Video%20Final.mp4)  
 [Google Drive Link](https://drive.google.com/file/d/1xGW8AZBnOVZjP3yMnH7o1lIWCwc5vAHK/view?usp=sharing)  
+
+## Project Report
+A detailed report on the entire project is given here:  
+[Project Report link](./AutoJudge%20Report.pdf)   
