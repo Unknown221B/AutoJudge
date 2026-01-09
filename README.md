@@ -86,4 +86,4 @@ The video file is included in the repository.
 
 ## Project Report
 A detailed report on the entire project is given here:  
-[Project Report link](./AutoJudge%20Report.pdf)   
+[AutoJudge - Project Report Link](./AutoJudge%20Report.pdf)   
